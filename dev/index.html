@@ -212,6 +212,21 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../tldr/" class="md-nav__link">
+        Quick reference
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -251,11 +266,24 @@
     The basics
   </a>
   
+    <nav class="md-nav" aria-label="The basics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-poetry-ive-never-heard-of-it" class="md-nav__link">
+    What is Poetry? I've never heard of it.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-is-poetry-ive-never-heard-of-it" class="md-nav__link">
-    What is Poetry? I've never heard of it.
+  <a href="#the-workflow" class="md-nav__link">
+    The workflow
   </a>
   
 </li>
@@ -298,11 +326,24 @@
     The basics
   </a>
   
+    <nav class="md-nav" aria-label="The basics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-poetry-ive-never-heard-of-it" class="md-nav__link">
+    What is Poetry? I've never heard of it.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-is-poetry-ive-never-heard-of-it" class="md-nav__link">
-    What is Poetry? I've never heard of it.
+  <a href="#the-workflow" class="md-nav__link">
+    The workflow
   </a>
   
 </li>
@@ -329,8 +370,12 @@
 <li>Git</li>
 </ul>
 <p>Pycharm is largely just a personal preference, you can follow this workflow with any IDE, or none. Similarly Git is central to how I share, backup and manage the history of my source code, but has no place in my deployment workflow other than as a way to get the source to the place it will be packaged. Poetry however, is pretty important.</p>
-<h2 id="what-is-poetry-ive-never-heard-of-it">What is Poetry? I've never heard of it.</h2>
+<h3 id="what-is-poetry-ive-never-heard-of-it">What is Poetry? I've never heard of it.</h3>
 <p><a href="https://python-poetry.org/">Poetry</a> is a fairly young project which provides an all-in-one solution to packaging and dependency management. I use Poetry because it makes it very easy to package my code up into something that someone else can <code>pip install</code> (or indeed <code>poetry install</code> but as you'll see, I don't want to rely on the target system having Poetry installed).</p>
+<h2 id="the-workflow">The workflow</h2>
+<p>When starting a new project, either create it using <code>poetry new</code> or select Poetry from the available interpreters in Pycharm. This will create a basic project structure including two packages, one for your source and one for your [tests]. It will also create a virtual environment (not in the project directory by default) and <code>pyproject.toml</code> file.</p>
+<p>The <code>pyproject.toml</code> seems to be the source of some mild controversy in the Python community, but we can ignore that. The great thing for us is that it's the only configuration file we need for our project. </p>
+<p>To install additional packages from PyPI, rather than using <code>pip</code>, just use <code>poetry install</code>. This will install the package into your environment and add it to the dependencies section of <code>pyproject.toml</code>. You can add dev dependencies with the <code>--dev</code> switch.</p>
                 
               
               
@@ -350,7 +395,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Introduction" rel="prev">
+        <a href="../tldr/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Quick reference" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -359,7 +404,7 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Introduction
+              Quick reference
             </div>
           </div>
         </a>
@@ -386,7 +431,7 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.409db549.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.409db549.min.js", "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.756773cc.min.js"></script>
