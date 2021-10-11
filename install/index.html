@@ -14,7 +14,7 @@
     
     
       
-        <title>Development environment - Snakes on a Plane: Getting Python to Users</title>
+        <title>Installing on the target system - Snakes on a Plane: Getting Python to Users</title>
       
     
     
@@ -65,7 +65,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#development-environment" class="md-skip">
+        <a href="#installing-on-the-target-system" class="md-skip">
           Skip to content
         </a>
       
@@ -94,7 +94,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Development environment
+              Installing on the target system
             
           </span>
         </div>
@@ -227,71 +227,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Development environment
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../dev/" class="md-nav__link">
         Development environment
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#the-basics" class="md-nav__link">
-    The basics
-  </a>
-  
-    <nav class="md-nav" aria-label="The basics">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#what-is-poetry-ive-never-heard-of-it" class="md-nav__link">
-    What is Poetry? I've never heard of it.
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-workflow" class="md-nav__link">
-    The workflow
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -332,11 +272,21 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../install/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Installing on the target system
       </a>
+      
     </li>
   
 
@@ -360,41 +310,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#the-basics" class="md-nav__link">
-    The basics
-  </a>
-  
-    <nav class="md-nav" aria-label="The basics">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#what-is-poetry-ive-never-heard-of-it" class="md-nav__link">
-    What is Poetry? I've never heard of it.
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-workflow" class="md-nav__link">
-    The workflow
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -406,21 +321,23 @@
               
                 
                 
-                <h1 id="development-environment">Development environment</h1>
-<h2 id="the-basics">The basics</h2>
-<p>My development environment consists of:</p>
+                <h1 id="installing-on-the-target-system">Installing on the target system</h1>
+<p>When distributing my application to the target system, I provide a batch (Windows) and bash (Linux) scripts along with the wheel created by Poetry. I'll also provide a readme and any configuration or resource files required. The script does the following:</p>
 <ul>
-<li>Pycharm with Poetry plugin</li>
-<li>Poetry</li>
-<li>Git</li>
+<li>Creates a directory in a location of the user's choosing</li>
+<li>Creates a virtual environment in an <code>env</code> subdirectory</li>
+<li>Activates the virtual environment and pip installs my project from the wheel</li>
+<li>Copies readme and resources into the target directory</li>
+<li>Makes a link to the script we declared in the <code>pyproject.toml</code> files (which by defaul is created several folders deep inside the virtual enviroment) at the top level of the new directory</li>
 </ul>
-<p>Pycharm is largely just a personal preference, you can follow this workflow with any IDE, or none. Similarly Git is central to how I share, backup and manage the history of my source code, but has no place in my deployment workflow other than as a way to get the source to the place it will be packaged. Poetry however, is pretty important.</p>
-<h3 id="what-is-poetry-ive-never-heard-of-it">What is Poetry? I've never heard of it.</h3>
-<p><a href="https://python-poetry.org/">Poetry</a> is a fairly young project which provides an all-in-one solution to packaging and dependency management. I use Poetry because it makes it very easy to package my code up into something that someone else can <code>pip install</code> (or indeed <code>poetry install</code> but as you'll see, I don't want to rely on the target system having Poetry installed).</p>
-<h2 id="the-workflow">The workflow</h2>
-<p>When starting a new project, either create it using <code>poetry new</code> or select Poetry from the available interpreters in Pycharm. This will create a basic project structure including two packages, one for your source and one for your [tests]. It will also create a virtual environment (not in the project directory by default) and <code>pyproject.toml</code> file.</p>
-<p>The <code>pyproject.toml</code> seems to be the source of some mild controversy in the Python community, but we can ignore that. The great thing for us is that it's the only configuration file we need for our project. </p>
-<p>To install additional packages from PyPI, rather than using <code>pip</code>, just use <code>poetry install</code>. This will install the package into your environment and add it to the dependencies section of <code>pyproject.toml</code>. You can add dev dependencies with the <code>--dev</code> switch.</p>
+<p>This leaves you with something like this, which looks remarkable like a 'normal' Windows application. You can double click the executable to run the app, or make it the target of a service and it will just work.</p>
+<pre><code>my-app/
+├─ env/
+├─ resources/
+├─ my-app.exe
+├─ readme.md
+├─ setup.yaml
+</code></pre>
                 
               
               
@@ -440,7 +357,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../tldr/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Quick reference" rel="prev">
+        <a href="../package/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Packaging the project" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -449,26 +366,11 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Quick reference
+              Packaging the project
             </div>
           </div>
         </a>
       
-      
-        
-        <a href="../write-tests/" class="md-footer__link md-footer__link--next" aria-label="Next: Writing tests" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Writing tests
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
       
     </nav>
   
