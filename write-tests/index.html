@@ -306,6 +306,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../run-tests/" class="md-nav__link">
+        Run tests with tox
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../package/" class="md-nav__link">
         Packaging the project
       </a>
@@ -323,6 +338,51 @@
     <li class="md-nav__item">
       <a href="../install/" class="md-nav__link">
         Installing on the target system
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versions/" class="md-nav__link">
+        Version numbering
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/" class="md-nav__link">
+        Docs
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jenkins/" class="md-nav__link">
+        Automate packaging with Jenkins
       </a>
     </li>
   
@@ -385,7 +445,27 @@
 <p>Unit testing is an area I'm still learning. I initially based my tests on <a href="https://blog.miguelgrinberg.com/post/how-to-write-unit-tests-in-python-part-1-fizz-buzz">this excellent article</a>, particularly <a href="https://blog.miguelgrinberg.com/post/how-to-write-unit-tests-in-python-part-2-game-of-life">part 2</a>. However I found that two of its key recommendations, inheriting from <code>unittest.TestCase</code> and use of the <code>parameterized</code> package, seemed to make things harder when I came to do more complicated tests. For example it was difficult to find any help on how to use <code>unittest.mock.patch</code> (or my current choice, <code>pytest-mock</code>, which wraps this into <code>mocker</code>) with parameterized. Sticking within the pytest package has made things easier in this regard.</p>
 <p>Therefore, my current approach to unit tests is to write bare functions (no classes) with plain <code>assert</code> statements. If I need to parameterize a function I use <code>pytest.parametrize</code> and if I need to patch something I use <code>mocker</code> from pytest-mock. For other mocking I use the classic <code>unittest.MagicMock</code>.</p>
 <p>Where possible I try to write code that avoids the need for patching during tests. I use dependency injection or callbacks such that if function A needs to call function B, function B is passed to function A as an argument. For example:</p>
-<p>code block here</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">read_data_from_disk</span><span class="p">(</span><span class="n">selection</span><span class="p">):</span>
+    <span class="c1"># some code to find the data etc</span>
+
+<span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="n">data_getter</span><span class="p">):</span>
+    <span class="c1"># lots of other stuff</span>
+    <span class="n">selection</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Select your data: &quot;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data_getter</span><span class="p">(</span><span class="n">selection</span><span class="p">)</span>
+    <span class="c1"># lots more stuff</span>
+
+<span class="n">get_data</span><span class="p">(</span><span class="n">read_data_from_disk</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
 <h2 id="test-dependencies">Test dependencies</h2>
                 
               
@@ -422,13 +502,13 @@
       
       
         
-        <a href="../package/" class="md-footer__link md-footer__link--next" aria-label="Next: Packaging the project" rel="next">
+        <a href="../run-tests/" class="md-footer__link md-footer__link--next" aria-label="Next: Run tests with tox" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Packaging the project
+              Run tests with tox
             </div>
           </div>
           <div class="md-footer__button md-icon">

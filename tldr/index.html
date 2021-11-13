@@ -223,9 +223,46 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Quick reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Quick reference
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#my-workflow" class="md-nav__link">
+    My workflow
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-extras" class="md-nav__link">
+    Optional extras
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -269,6 +306,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../run-tests/" class="md-nav__link">
+        Run tests with tox
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../package/" class="md-nav__link">
         Packaging the project
       </a>
@@ -286,6 +338,51 @@
     <li class="md-nav__item">
       <a href="../install/" class="md-nav__link">
         Installing on the target system
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versions/" class="md-nav__link">
+        Version numbering
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/" class="md-nav__link">
+        Docs
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jenkins/" class="md-nav__link">
+        Automate packaging with Jenkins
       </a>
     </li>
   
@@ -310,6 +407,28 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#my-workflow" class="md-nav__link">
+    My workflow
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-extras" class="md-nav__link">
+    Optional extras
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -322,19 +441,22 @@
                 
                 
                 <h1 id="quick-reference">Quick reference</h1>
+<h2 id="my-workflow">My workflow</h2>
+<p>This is what my workflow looks like:</p>
 <ul>
-<li>Write software using Poetry to manage dependencies</li>
-<li>Write tests using Pytest</li>
-<li>Package the project to tarball and/or wheel using Poetry<ul>
-<li>Automatically increment and single-source the version number</li>
-<li>Optionally, use Jenkins to automate and centralise packaging</li>
+<li><a href="../dev/">Write software</a> using Poetry to manage dependencies</li>
+<li><a href="../write-tests/">Write tests</a> using Pytest</li>
+<li><a href="../package/">Package the project</a> to tarball and/or wheel using Poetry</li>
+<li>Use Tox to <a href="../run-tests/">automatically run the tests</a> in isolated environment(s)</li>
+<li>Distribute the package with <a href="../install/">an installer script</a></li>
+<li>Double click <a href="../install/">the executable</a> created by the install script to run the application!</li>
 </ul>
-</li>
-<li>Use Tox to automatically runs the tests in isolated environment(s)</li>
-<li>Distribute the package to users<ul>
-<li>Include a script to install the package in a self-contained virtual environment</li>
-</ul>
-</li>
+<h2 id="optional-extras">Optional extras</h2>
+<p>There are some optional steps that can be useful:</p>
+<ul>
+<li>Single-source and automatically increment <a href="../versions/">the version number</a></li>
+<li>Automatically <a href="../docs/">generate documentation</a> using pdoc</li>
+<li>Perform all <a href="../jenkins/">testing and packaging</a> using Jenkins</li>
 </ul>
                 
               

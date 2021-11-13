@@ -286,6 +286,19 @@
     The workflow
   </a>
   
+    <nav class="md-nav" aria-label="The workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#talking-of-dev-dependencies" class="md-nav__link">
+    Talking of dev dependencies...
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -319,6 +332,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../run-tests/" class="md-nav__link">
+        Run tests with tox
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../package/" class="md-nav__link">
         Packaging the project
       </a>
@@ -336,6 +364,51 @@
     <li class="md-nav__item">
       <a href="../install/" class="md-nav__link">
         Installing on the target system
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versions/" class="md-nav__link">
+        Version numbering
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/" class="md-nav__link">
+        Docs
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jenkins/" class="md-nav__link">
+        Automate packaging with Jenkins
       </a>
     </li>
   
@@ -391,6 +464,19 @@
     The workflow
   </a>
   
+    <nav class="md-nav" aria-label="The workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#talking-of-dev-dependencies" class="md-nav__link">
+    Talking of dev dependencies...
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -420,7 +506,14 @@
 <h2 id="the-workflow">The workflow</h2>
 <p>When starting a new project, either create it using <code>poetry new</code> or select Poetry from the available interpreters in Pycharm. This will create a basic project structure including two packages, one for your source and one for your [tests]. It will also create a virtual environment (not in the project directory by default) and <code>pyproject.toml</code> file.</p>
 <p>The <code>pyproject.toml</code> seems to be the source of some mild controversy in the Python community, but we can ignore that. The great thing for us is that it's the only configuration file we need for our project. </p>
-<p>To install additional packages from PyPI, rather than using <code>pip</code>, just use <code>poetry install</code>. This will install the package into your environment and add it to the dependencies section of <code>pyproject.toml</code>. You can add dev dependencies with the <code>--dev</code> switch.</p>
+<p>To install additional packages from PyPI, rather than using <code>pip</code>, just use <code>poetry add</code>. This will install the package into your environment and add it to the dependencies section of <code>pyproject.toml</code>. You can add dev dependencies with the <code>--dev</code> switch.</p>
+<h3 id="talking-of-dev-dependencies">Talking of dev dependencies...</h3>
+<p>As well as <a href="../run-tests/">the test dependencies</a> I find the following useful to have in my dev environment.</p>
+<ul>
+<li>Black for code formatting</li>
+<li>Pydocstyle to check my docstrings</li>
+<li>mypy to check my type hints (Pycharm does this automatically)</li>
+</ul>
                 
               
               
