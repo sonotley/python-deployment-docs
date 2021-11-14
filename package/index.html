@@ -8,9 +8,8 @@
       
       
       
-      
       <link rel="icon" href="../assets/so.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.0.0b1">
     
     
       
@@ -18,10 +17,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.802231af.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.450eaa28.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.3f5d1f46.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.9204c3b2.min.css">
         
       
     
@@ -31,11 +30,11 @@
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:300,400,400i,700%7C&display=fallback">
-        <style>:root{--md-text-font-family:"Merriweather";--md-code-font-family:""}</style>
+        <style>:root{--md-text-font:"Merriweather";--md-code-font:""}</style>
       
     
     
-    
+    <script>function __md_scope(e,t,_){return new URL(_||(t===localStorage?"..":".."),location).pathname+"."+e}function __md_get(e,t=localStorage,_){return JSON.parse(t.getItem(__md_scope(e,t,_)))}function __md_set(e,t,_=localStorage,o){try{_.setItem(__md_scope(e,_,o),JSON.stringify(t))}catch(e){}}</script>
     
       
 
@@ -55,9 +54,8 @@
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="amber" data-md-color-accent="amber">
   
     
-    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
-      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -74,7 +72,10 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+    
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="Snakes on a Plane: Getting Python to Users" class="md-header__button md-logo" aria-label="Snakes on a Plane: Getting Python to Users" data-md-component="logo">
       
@@ -128,8 +129,7 @@
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
       </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
+      <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
@@ -161,11 +161,14 @@
     
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -293,6 +296,7 @@
       </a>
       
         
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -307,11 +311,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#my-current-method-poetry" class="md-nav__link">
-    My current method - Poetry
+  <a href="#poetry" class="md-nav__link">
+    Poetry
   </a>
   
-    <nav class="md-nav" aria-label="My current method - Poetry">
+    <nav class="md-nav" aria-label="Poetry">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -420,6 +424,7 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -434,11 +439,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#my-current-method-poetry" class="md-nav__link">
-    My current method - Poetry
+  <a href="#poetry" class="md-nav__link">
+    Poetry
   </a>
   
-    <nav class="md-nav" aria-label="My current method - Poetry">
+    <nav class="md-nav" aria-label="Poetry">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -480,29 +485,29 @@
               
                 
                 
-                <h1 id="packaging-the-project">Packaging the project</h1>
+<h1 id="packaging-the-project">Packaging the project</h1>
 <p>This part of things had me totally confused for a while. But it turns out recent improvements have made this somewhat simpler.</p>
 <p>Basically I wanted a way to allow a user to recreate my application and all its dependencies inside a virtual environment with zero Python knowledge and minimal complexity (for me and them).</p>
 <p>Packaging in Python is such a perenial topic of confusion and debate that there is actually an official organisation dedicated to it. The PYPA site is a useful resource but I found it wasn't particularly friendly to people just looking for a simple opinionated solution.</p>
-<h2 id="my-current-method-poetry">My current method - Poetry</h2>
-<p>As mentioned earlier, I use Poetry to manage dependencies and provide a virtual environment when developing. The great thing about Poetry is that packaging essentially comes for free. All I need to do is type <code>poetry build</code> and my project is packaged up into a tarball and a wheel. These contain my code and the metadata defining its dependencies. The metadata also records that Poetry is the tool required to build the package from source (i.e. the tarball, also known as an sdist).</p>
+<h2 id="poetry">Poetry</h2>
+<p>I use Poetry to manage dependencies and provide a virtual environment when developing. The great thing about Poetry is that packaging essentially comes for free. All I need to do is type <code>poetry build</code> and my project is packaged up into a tarball and a wheel. These contain my code and the metadata defining its dependencies. The metadata also records that Poetry is the tool required to build the package from source (i.e. the tarball, also known as an sdist).</p>
 <h3 id="doesnt-that-mean-the-user-needs-poetry-installed">Doesn't that mean the user needs Poetry installed?</h3>
 <p>No, thankfully not. That's one of the key reasons I chose this approach. Since PEP-517 and 518, pip looks in the <code>pyproject.toml</code> file to determine what build tools are required when installing a package from sdist, and retrieves these automatically. Alternatively, if you install from the wheel file...</p>
 <h2 id="why-bother-packaging-at-all-why-not-just-distibute-the-code">Why bother packaging at all, why not just distibute the code?</h2>
-<p>First of all, in the case of pur Python packages your source code <em>is</em> distributed. Once someone has installed you package they can happily <code>import</code> it into their own projects or just browse your <code>.py</code> files. </p>
+<p>First of all, in the case of pure Python packages your source code <em>is</em> distributed. Once someone has installed you package they can happily <code>import</code> it into their own projects or just browse your <code>.py</code> files. </p>
 <p>For the general Python community, the biggest advantage of packaging your code is that it means you can upload it to pypi, allowing others to discover and install it. Packaging is also an essential step if your code contains C extensions.</p>
 <p>However, I'm talking about distributing pur Python applications to users directly, so why bother? The answers:</p>
 <ul>
 <li>Scripts</li>
 <li>Version control</li>
 </ul>
+<p>Scripts are executable files that run some part of your code. See here for more info, but suffice to say the ability to create an executable if very useful if you want to offer a simple 'double-click here to run' user experience.</p>
+<p>By version control I mean keeping control of the versions of your code that are out in the wild. That can be hard to do if you just commit your code to a repo and allow people to pull it and run it at any moment. For a start you have to be sure that every commit works and is uniquely identifiable by the end-user. Sure, there are ways to do this, but packaging provides a neat way of saying "at the moment I press build this, and only this, is version 1.2.3 and there will never be another version 1.2.3". </p>
+<p>Having a distinct 'build/package' step in your workflow separates what you ship to users from what you commit as source. If you are responsible, even informally for supporting yoru code once it goes out into the ide world then reducing the number of variations you have to support is critical to maintaining sanity.</p>
 <h2 id="other-things-i-looked-at">Other things I looked at</h2>
+<p>I initially had a very similar workflow but using pipenv instead of Poetry. It worked alright for sharing code with users, but was missing all the packaging and testing goodness.</p>
+<p>I also like Pyinstaller as it means the target system doesn't need Python or an internet connection. I might add a Pyinstaller workflow to this site one day.</p>
                 
-              
-              
-                
-
-
               
             </article>
           </div>
@@ -510,8 +515,7 @@
         
       </main>
       
-        
-<footer class="md-footer">
+        <footer class="md-footer">
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
@@ -550,14 +554,15 @@
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
-        
-      </div>
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
       
     </div>
   </div>
@@ -567,10 +572,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.409db549.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "content.code.annotate"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.01824240.min.js", "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.756773cc.min.js"></script>
+      <script src="../assets/javascripts/bundle.0d86bc28.min.js"></script>
       
     
   </body>
