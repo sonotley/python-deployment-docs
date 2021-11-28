@@ -1,3 +1,54 @@
-site_name: My Python Deployment Workflow
+site_name: "Snakes on a Plane: Getting Python to Users"
+repo_url: https://github.com/sonotley/python-deployment-utils
+copyright: Copyright &copy; 2021 Simon Notley
 theme:
   name: material
+  logo: assets/so.png
+  favicon: assets/so.png
+  features:
+    - navigation.instant
+    - content.code.annotate
+  font:
+    text: Merriweather
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+      primary: amber
+      accent: amber
+
+    - scheme: slate
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+      primary: amber
+      accent: amber
+
+extra:
+  social:
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/simonnotley/
+    - icon: fontawesome/brands/github
+      link: https://github.com/sonotley
+
+
+markdown_extensions:
+ - pymdownx.highlight
+ - pymdownx.inlinehilite
+ - pymdownx.superfences
+ - pymdownx.snippets
+ - attr_list
+
+
+nav:
+ - index.md
+ - tldr.md
+ - dev.md
+ - write-tests.md
+ - run-tests.md
+ - package.md
+ - install.md
+ - versions.md
+ - docs.md
+ - jenkins.md
