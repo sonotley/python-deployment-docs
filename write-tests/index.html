@@ -477,7 +477,7 @@
 <h2 id="use-pytest">Use pytest</h2>
 <p>Unit testing is an area I'm still learning. I initially based my tests on <a href="https://blog.miguelgrinberg.com/post/how-to-write-unit-tests-in-python-part-1-fizz-buzz">this excellent article</a>, particularly <a href="https://blog.miguelgrinberg.com/post/how-to-write-unit-tests-in-python-part-2-game-of-life">part 2</a>. However I found that two of its key recommendations, inheriting from <code>unittest.TestCase</code> and use of the <code>parameterized</code> package, seemed to make things harder when I came to do more complicated tests. For example it was difficult to find any help on how to use <code>unittest.mock.patch</code> (or my current choice, <code>pytest-mock</code>, which wraps this into <code>mocker</code>) with parameterized. Sticking within the pytest package has made things easier in this regard.</p>
 <p>Therefore, my current approach to unit tests is to write bare functions (no classes) with plain <code>assert</code> statements. If I need to parameterize a function I use <code>pytest.parametrize</code> and if I need to patch something I use <code>mocker</code> from pytest-mock. For other mocking I use the classic <code>unittest.MagicMock</code>.</p>
-<p>Where possible I try to write code that avoids the need for patching during tests. I use dependency injection or callbacks such that if function A needs to call function B, function B is passed to function A as an argument. For example:</p>
+<p>Where possible I try to write code that avoids the need for patching during tests. I use dependency injection or callbacks such that if function A needs to call function B, function B is passed to function A as an argument. For example, the code below makes is easy to have multiple <code>data_getters</code> perhaps one for disk one for database, one for remote API etc. but it also makes it very easy to pass a mock getter for unit testing. Of course I don't do this absolutely everywhere, just in places where is helps.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -490,7 +490,7 @@
 <span class="normal">10</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">read_data_from_disk</span><span class="p">(</span><span class="n">selection</span><span class="p">):</span>
     <span class="c1"># some code to find the data etc</span>
 
-<span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="n">data_getter</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="n">data_getter</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
     <span class="c1"># lots of other stuff</span>
     <span class="n">selection</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Select your data: &quot;</span><span class="p">)</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">data_getter</span><span class="p">(</span><span class="n">selection</span><span class="p">)</span>
