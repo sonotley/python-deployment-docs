@@ -5,13 +5,13 @@ Unit testing is an area I'm still learning. I initially based my tests on [this 
 
 Therefore, my current approach to unit tests is to write bare functions (no classes) with plain `assert` statements. If I need to parameterize a function I use `pytest.parametrize` and if I need to patch something I use `mocker` from pytest-mock. For other mocking I use the classic `unittest.MagicMock`.
 
-Where possible I try to write code that avoids the need for patching during tests. I use dependency injection or callbacks such that if function A needs to call function B, function B is passed to function A as an argument. For example:
+Where possible I try to write code that avoids the need for patching during tests. I use dependency injection or callbacks such that if function A needs to call function B, function B is passed to function A as an argument. For example, the code below makes is easy to have multiple `data_getters` perhaps one for disk one for database, one for remote API etc. but it also makes it very easy to pass a mock getter for unit testing. Of course I don't do this absolutely everywhere, just in places where is helps.
 
 ``` python linenums="1"
 def read_data_from_disk(selection):
     # some code to find the data etc
 
-def get_data(data_getter):
+def get_data(data_getter: Callable):
     # lots of other stuff
     selection = input("Select your data: ")
     data = data_getter(selection)

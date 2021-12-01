@@ -6,7 +6,7 @@ In this scenario, all you need to do is to commit your code and then anyone who 
 
 Getting Jenkins to perform your testing and packaging is pretty straightforward. You need to create a Jenkins job, associate your Git repository with it and then add shell script to perform all the steps documented on this site. It should look something like this.
 
-```bash linenums=1 title="Shell script to be executed by Jenkins"
+```bash linenums="1" title="Shell script to be executed by Jenkins"
 # Make all required modifications to PATH
 export PATH="$HOME/.local/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
@@ -29,7 +29,7 @@ poetry run python -m pdoc example_package -d numpy -o ./pdoc
 
 The script `build_current_version.sh` is separated purely for convenience so I can easily run it in my dev environment.
 
-```bash linenums=1 title="build_current_version.sh"
+```bash linenums="1" title="build_current_version.sh"
 #!/usr/bin/env bash
 
 tox || { echo "TESTS FAILED - BUILD ABORTED" ; exit 1; }

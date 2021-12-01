@@ -417,34 +417,55 @@
 <p>Jenkins is a handy tool to automate all the packaging steps I've documented on this site. It's especially useful if you are sharing your applications with a wider team who have access to Jenkins. </p>
 <p>In this scenario, all you need to do is to commit your code and then anyone who wants a copy of the tested, deployable application can grab it from Jenkins. You can have Jenkins build every time you commit, nightly, or just build on-demand.</p>
 <p>Getting Jenkins to perform your testing and packaging is pretty straightforward. You need to create a Jenkins job, associate your Git repository with it and then add shell script to perform all the steps documented on this site. It should look something like this.</p>
-<p>```bash linenums=1 title="Shell script to be executed by Jenkins"</p>
-<h1 id="make-all-required-modifications-to-path">Make all required modifications to PATH</h1>
-<p>export PATH="$HOME/.local/bin:$PATH"
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"</p>
-<h1 id="make-all-required-versions-of-python-available-for-test">Make all required versions of Python available for test</h1>
-<p>pyenv local 3.8.12 3.9.7 3.10.0</p>
-<h1 id="run-tests-and-build">Run tests and build</h1>
-<p>chmod +x build_current_version.sh
-./build_current_version.sh</p>
-<h1 id="build-the-api-docs">Build the API docs</h1>
-<p>poetry install
-poetry run python -m pdoc example_package -d numpy -o ./pdoc</p>
-<h1 id="zip-up-the-dist-folder-for-distribution">Zip up the dist folder for distribution</h1>
-<p>(cd dist &amp;&amp; zip -r ../example-package-"$(cat ../example_project/version.txt)".zip ./<em>)
-(cd pdoc &amp;&amp; zip -r ../api-docs-for-developers-"$(cat ../example_project/version.txt)".zip ./</em>)
-<div class="highlight"><pre><span></span><code>The script `build_current_version.sh` is separated purely for convenience so I can easily run it in my dev environment.
+<table class="highlighttable"><tr><th colspan="2" class="filename"><div class="highlight"><span class="filename">Shell script to be executed by Jenkins</span></div></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># Make all required modifications to PATH</span>
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.local/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+<span class="nb">export</span> <span class="nv">PYENV_ROOT</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.pyenv&quot;</span>
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$PYENV_ROOT</span><span class="s2">/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+<span class="nb">eval</span> <span class="s2">&quot;</span><span class="k">$(</span>pyenv init --path<span class="k">)</span><span class="s2">&quot;</span>
+<span class="nb">eval</span> <span class="s2">&quot;</span><span class="k">$(</span>pyenv init -<span class="k">)</span><span class="s2">&quot;</span>
+<span class="nb">eval</span> <span class="s2">&quot;</span><span class="k">$(</span>pyenv virtualenv-init -<span class="k">)</span><span class="s2">&quot;</span>
+<span class="c1"># Make all required versions of Python available for test</span>
+pyenv <span class="nb">local</span> <span class="m">3</span>.8.12 <span class="m">3</span>.9.7 <span class="m">3</span>.10.0
+<span class="c1"># Run tests and build</span>
+chmod +x build_current_version.sh
+./build_current_version.sh
+<span class="c1"># Build the API docs</span>
+poetry install
+poetry run python -m pdoc example_package -d numpy -o ./pdoc
+<span class="c1"># Zip up the dist folder for distribution</span>
+<span class="o">(</span><span class="nb">cd</span> dist <span class="o">&amp;&amp;</span> zip -r ../example-package-<span class="s2">&quot;</span><span class="k">$(</span>cat ../example_project/version.txt<span class="k">)</span><span class="s2">&quot;</span>.zip ./*<span class="o">)</span>
+<span class="o">(</span><span class="nb">cd</span> pdoc <span class="o">&amp;&amp;</span> zip -r ../api-docs-for-developers-<span class="s2">&quot;</span><span class="k">$(</span>cat ../example_project/version.txt<span class="k">)</span><span class="s2">&quot;</span>.zip ./*<span class="o">)</span>
+</code></pre></div>
+</td></tr></table>
+<p>The script <code>build_current_version.sh</code> is separated purely for convenience so I can easily run it in my dev environment.</p>
+<table class="highlighttable"><tr><th colspan="2" class="filename"><div class="highlight"><span class="filename">build_current_version.sh</span></div></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env bash</span>
 
-```bash linenums=1 title=&quot;build_current_version.sh&quot;
-#!/usr/bin/env bash
-
-tox || { echo &quot;TESTS FAILED - BUILD ABORTED&quot; ; exit 1; }
-echo &quot;Test passed - building sdist and wheel&quot;
-poetry build || { echo &quot;POETRY BUILD FAILED - BUILD ABORTED&quot; ; exit 1; }        
-</code></pre></div></p>
+tox <span class="o">||</span> <span class="o">{</span> <span class="nb">echo</span> <span class="s2">&quot;TESTS FAILED - BUILD ABORTED&quot;</span> <span class="p">;</span> <span class="nb">exit</span> <span class="m">1</span><span class="p">;</span> <span class="o">}</span>
+<span class="nb">echo</span> <span class="s2">&quot;Test passed - building sdist and wheel&quot;</span>
+poetry build <span class="o">||</span> <span class="o">{</span> <span class="nb">echo</span> <span class="s2">&quot;POETRY BUILD FAILED - BUILD ABORTED&quot;</span> <span class="p">;</span> <span class="nb">exit</span> <span class="m">1</span><span class="p">;</span> <span class="o">}</span>        
+</code></pre></div>
+</td></tr></table>
                 
               
             </article>
