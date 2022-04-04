@@ -1,6 +1,6 @@
 # Introduction
 
-> This site is currently a work in progress. Most pages are written but I'm still tweaking it. I am posting updates most weeks.
+> This site is currently a work in progress. Most pages are written but I'm still tweaking it.
 
 ## What is this all about?
 Python is pretty easy to write, but when it comes to packaging, distributing and running code somewhere other than your own computer, things get a bit tricky. This is a guide to how I've chosen to tackle that problem. It's a reference for my future self and hopefully of help to other people too.

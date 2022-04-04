@@ -17,3 +17,7 @@ There are some optional steps that can be useful:
 - Single-source and automatically increment [the version number](versions.md)
 - Automatically [generate documentation](docs.md) using pdoc
 - Perform all [testing and packaging](jenkins.md) using Jenkins
+
+## Other stuff
+
+I've also written up [things I tried but didn't ultimately use](others.md) and [things I'd like to try](future.md).
