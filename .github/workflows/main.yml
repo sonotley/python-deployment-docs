@@ -8,10 +8,19 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
 
-      #- name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
-      #  run: |
-       #   npm ci
-        #  npm run build
+      - name: Setup Python 🔧
+        uses: actions/setup-python@v3.1.0
+        with:
+          python-version: '3.10'
+          architecture: 'x64'
+
+      - name: Install dependencies 🔧
+        run: |
+          python3 -m pip install --upgrade pip     # install pip
+          python3 -m pip install mkdocs            # install mkdocs 
+          python3 -m pip install mkdocs-material   # install material theme
+      - name: Build site 🔧
+        run: mkdocs build
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.3.0
