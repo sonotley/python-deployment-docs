@@ -3,16 +3,19 @@ This part of things had me totally confused for a while. But it turns out recent
 
 Basically I wanted a way to allow a user to recreate my application and all its dependencies inside a virtual environment with zero Python knowledge and minimal complexity (for me and them).
 
-Packaging in Python is such a perenial topic of confusion and debate that there is actually an official organisation dedicated to it. The PYPA site is a useful resource but I found it wasn't particularly friendly to people just looking for a simple opinionated solution.
+Packaging in Python is such a perennial topic of confusion and debate that there is actually an official organisation dedicated to it. 
+The PYPA site is a useful resource, but I found it wasn't particularly friendly to people just looking for a simple opinionated solution.
 
 ## Poetry
 I use Poetry to manage dependencies and provide a virtual environment when developing. The great thing about Poetry is that packaging essentially comes for free. All I need to do is type `poetry build` and my project is packaged up into a tarball and a wheel. These contain my code and the metadata defining its dependencies. The metadata also records that Poetry is the tool required to build the package from source (i.e. the tarball, also known as an sdist).
 
 ### Doesn't that mean the user needs Poetry installed?
-No, thankfully not. That's one of the key reasons I chose this approach. Since PEP-517 and 518, pip looks in the `pyproject.toml` file to determine what build tools are required when installing a package from sdist, and retrieves these automatically. Alternatively, if you install from the wheel file...
+No, thankfully not. That's one of the key reasons I chose this approach. 
+Since PEP-517 and 518, pip looks in the `pyproject.toml` file to determine what build tools are required when installing a package from sdist, and retrieves these automatically. 
+Better still, Poetry creates a binary wheel as well as an sdist, and wheels can be installed without any 'build backend'.
 
 ## Why bother packaging at all, why not just distibute the code?
-First of all, in the case of pure Python packages your source code *is* distributed. Once someone has installed you package they can happily `import` it into their own projects or just browse your `.py` files. 
+In the case of pure Python packages your source code *is* distributed. Once someone has installed you package they can happily `import` it into their own projects or just browse your `.py` files. 
 
 For the general Python community, the biggest advantage of packaging your code is that it means you can upload it to pypi, allowing others to discover and install it. Packaging is also an essential step if your code contains C extensions.
 

@@ -1,6 +1,6 @@
 # Introduction
 
-> This site is currently a work in progress. Most pages are written but I'm still tweaking it.
+> This site is currently a work in progress. Most pages are written, but I'm still tweaking it.
 
 ## What is this all about?
 Python is pretty easy to write, but when it comes to packaging, distributing and running code somewhere other than your own computer, things get a bit tricky. This is a guide to how I've chosen to tackle that problem. It's a reference for my future self and hopefully of help to other people too.
@@ -27,4 +27,5 @@ Well, I like to think anyone with an interest in Python could get something from
 - Deploying software as a Docker container
 - Deploying to 'serverless' cloud services such as Google App Engine, AWS Lambda, Heroku
 
-I also don't really cover the online CI/CD tools such as those provided Github and Gitlab. I'd like to explore these, but they aren't in my current workflow.
+I also don't really cover the online CI/CD tools such as those provided Github and Gitlab. 
+I'd like to explore these, but they aren't in my current workflow.

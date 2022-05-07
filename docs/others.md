@@ -10,7 +10,7 @@ In any case, pipenv seems to be in decline, although it has had more regular rel
 
 ## [pipx](https://github.com/pypa/pipx) - applications with their own environments
 
-During my research I discovered pipx and I love it. 
+During my research I discovered pipx, and I love it. 
 The approach I describe here can also work with pipx, you simply take the wheel or sdist built with poetry and install it with pipx. 
 The reason I don't use pipx everywhere is that it creates its virtual environments in an obscure user folder 
 which means they are only on the path for the user who installed them and could be accidentally deleted if that user's profile is removed (i.e. on a server). 

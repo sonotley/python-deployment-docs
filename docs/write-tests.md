@@ -22,9 +22,10 @@ get_data(read_data_from_disk)
 
 ## Test dependencies
 
-To let me quickly run my tests while developing I like to install my test dependencies into my dev environment using `poetry add --dev`. This adds them to `pyproject.toml` show shown.
+To let me quickly run my tests while developing I like to install my test dependencies into my dev environment using `poetry add --dev`. 
+This adds them to `pyproject.toml` as shown.
 
-```ini linenums=1
+``` ini linenums=1
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
 pytest-cov = "^2.12.1"

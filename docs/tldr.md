@@ -9,7 +9,7 @@ This is what my workflow looks like:
 - [Package the project](package.md) to tarball and/or wheel using Poetry
 - Use Tox to [automatically run the tests](run-tests.md) in isolated environment(s)
 - Distribute the package with [an installer script](install.md)
-- Double click [the executable](install.md) created by the install script to run the application!
+- Double-click [the executable](install.md) created by the installation script to run the application!
 
 ## Optional extras
 There are some optional steps that can be useful:
