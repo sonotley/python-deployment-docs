@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="../assets/so.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.13">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.4">
     
     
       
@@ -17,11 +17,12 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.e411adfe.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.4a0965b7.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.cc9b2e1e.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
         
+      
       
     
     
@@ -520,9 +521,14 @@
 
 <h1 id="version-numbering">Version numbering</h1>
 <h2 id="single-sourcing-the-version-number">Single-sourcing the version number</h2>
-<p>Having a single, definitive version number for your project is obviously highly desirable - why bother with version numbers at all if they are ambiguous? So it's very handy that the <code>pyproject.toml</code> file contains a version attribute. Poetry also provides the <code>poetry version</code> command to access or increment the version number. <strong>If you're looking for maximum simplicity, you can stop there</strong>, but as we shall see below there are still some traps lurking for the unwary.</p>
+<p>Having a single, definitive version number for your project is obviously highly desirable - why bother with version numbers at all if they are ambiguous? 
+So it's very handy that the <code>pyproject.toml</code> file contains a version attribute. 
+Poetry also provides the <code>poetry version</code> command to access or increment the version number. 
+<strong>If you're looking for maximum simplicity, you can stop there</strong>, but as we shall see below there are still some traps lurking for the unwary.</p>
 <h2 id="accessing-the-version-number">Accessing the version number</h2>
-<p>Once you have a version number, you are likely to want to use it. You might want to log the version number on startup or print it to your user interface. You may also want to provide a <code>__version__</code> module attribute, a common convention to allow others to easily check the version of your package they are using.</p>
+<p>Once you have a version number, you are likely to want to use it. 
+You might want to log the version number on startup or print it to your user interface. 
+You may also want to provide a <code>__version__</code> module attribute, a common convention to allow others to easily check the version of your package they are using.</p>
 <p>Using the above method you get three out-of-the-box ways to access the version number, but none of them is fool-proof</p>
 <ol>
 <li>Use <code>poetry version</code> to return it</li>
@@ -530,13 +536,14 @@
 <li>Get it from importlib.metadata</li>
 </ol>
 <p>Option (1) is fine during development or packaging but no use once you've distributed the package as it requires you to have poetry installed and to have installed your project using <code>poetry install</code>.</p>
-<p>Option (2) you could just about get away with during development, but in deployment it would be a mess. The <code>pyproject.toml</code> file is meant for use when packaging or installing, not during runtime. For a start you'd have to find the file buried in your site-packages directory, then you'd need the non-standard toml package installed to pass it (lets skip over the fact Python is trying to standardise on a file in a format it doesn't actually support in the standard library)</p>
+<p>Option (2) you could just about get away with during development, but in deployment it would be a mess. The <code>pyproject.toml</code> file is meant for use when packaging or installing, not during runtime. 
+For a start you'd have to find the file buried in your site-packages directory, then you'd need a toml package installed to parse it (toml support in the standard library is coming in 3.11)</p>
 <p>Option (3) is the 'correct' one and avoids all the issues above. All you need to do is:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span> <span class="nn">importlib.metadata</span> <span class="kn">import</span> <span class="n">version</span>
 <span class="n">__version__</span> <span class="o">=</span> <span class="n">version</span><span class="p">(</span><span class="s2">&quot;my_package_name&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-<p>Frustratingingly, this has two drawbacks:</p>
+<p>Frustratingly, this has two drawbacks:</p>
 <ul>
 <li>It requires Python 3.8 which makes it a non-starter for the Debian 10 servers I often deploy to, which use 3.7.</li>
 <li>It only works <em>after</em> the code has been packaged and installed. If you try to invoke it when running your code from the dev environment it won't work, which is annoying.</li>
@@ -547,7 +554,6 @@
 <li>To increment the version number, I use a script that wraps poetry version <em>and</em> writes a <code>VERSION.TXT</code> file into each package within my project</li>
 <li>To access the version number, I read the number in from <code>VERSION.TXT</code> in <code>__init__.py</code> and assign the name <code>__version__</code> to it.</li>
 </ul>
-<p>My full script also includes an experimental implementation of C# style version numbers, but a stripped down version looks like this.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -572,69 +578,36 @@
 <span class="normal">22</span>
 <span class="normal">23</span>
 <span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="sd">&quot;&quot;&quot;Script to apply versions in projects using Poetry</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="sd">&quot;&quot;&quot;Script to apply versions in projects using Poetry</span>
 
-<span class="sd">This simple version is actually less functional than calling `poetry version`</span>
-<span class="sd">but shows how I create `version.txt` in each package</span>
+<span class="sd">Wraps `poetry version` and creates `version.txt` in each package</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">subprocess</span>
-<span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">os</span>
-
-<span class="n">short_version_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^\d+\.\d+$&quot;</span><span class="p">)</span>
-<span class="n">long_version_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^\d+\.\d+\.\d+(\.\d+)?$&quot;</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">version_to_str</span><span class="p">(</span><span class="n">version</span><span class="p">):</span>
-    <span class="k">return</span> <span class="s2">&quot;.&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">version</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">write_version_to_pyproject</span><span class="p">(</span><span class="n">version</span><span class="p">):</span>
-    <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s2">&quot;poetry&quot;</span><span class="p">,</span> <span class="s2">&quot;version&quot;</span><span class="p">,</span> <span class="n">version_to_str</span><span class="p">(</span><span class="n">version</span><span class="p">)])</span>
 
 
 <span class="k">def</span> <span class="nf">write_version_to_packages</span><span class="p">(</span><span class="n">version</span><span class="p">):</span>
-    <span class="n">dir_list</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">))[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">dir_list</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">&quot;..&quot;</span><span class="p">)))[</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dir_list</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="s2">&quot;__init__.py&quot;</span><span class="p">)):</span>
             <span class="n">target_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="s2">&quot;version.txt&quot;</span><span class="p">)</span>
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">version_to_str</span><span class="p">(</span><span class="n">version</span><span class="p">))</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
 
 
 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Too many arguments&quot;</span><span class="p">)</span>
 
-<span class="k">elif</span> <span class="n">long_version_pattern</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
-    <span class="n">v</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
-    <span class="n">version</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid argument &#39;</span><span class="si">{</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
-    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">write_version_to_pyproject</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
-<span class="n">write_version_to_packages</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s2">&quot;poetry&quot;</span><span class="p">,</span> <span class="s2">&quot;version&quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">current_version</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">([</span><span class="s2">&quot;poetry&quot;</span><span class="p">,</span> <span class="s2">&quot;version&quot;</span><span class="p">]))</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">write_version_to_packages</span><span class="p">(</span><span class="n">current_version</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 
               
             </article>
+            
           </div>
         </div>
         
@@ -642,7 +615,8 @@
       
         <footer class="md-footer">
   
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
         <a href="../install/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installing on the target system" rel="prev">
@@ -723,10 +697,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "content.code.annotate"], "search": "../assets/javascripts/workers/search.85cb4492.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.ed9748b7.min.js"></script>
+      <script src="../assets/javascripts/bundle.f758a944.min.js"></script>
       
     
   </body>
