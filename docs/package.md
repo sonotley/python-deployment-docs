@@ -9,6 +9,11 @@ The PYPA site is a useful resource, but I found it wasn't particularly friendly 
 ## Poetry
 I use Poetry to manage dependencies and provide a virtual environment when developing. The great thing about Poetry is that packaging essentially comes for free. All I need to do is type `poetry build` and my project is packaged up into a tarball and a wheel. These contain my code and the metadata defining its dependencies. The metadata also records that Poetry is the tool required to build the package from source (i.e. the tarball, also known as an sdist).
 
+A slight extra complexity is dependency pinning. I'd like to be confident that when a user installs my application, they get an environment as close to the one I tested as possible.
+To support that, I also use poetry to produce a lock file in the form of a `requirements.text`:
+
+
+
 ### Doesn't that mean the user needs Poetry installed?
 No, thankfully not. That's one of the key reasons I chose this approach. 
 Since PEP-517 and 518, pip looks in the `pyproject.toml` file to determine what build tools are required when installing a package from sdist, and retrieves these automatically. 

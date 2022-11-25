@@ -1,6 +1,9 @@
 # Introduction
 
-> This site is currently a work in progress. Most pages are written, but I'm still tweaking it.
+> This site is currently a work in progress. 
+> It's pretty much complete for the original generation of my workflow, 
+> but I'm reworking the workflow all the time. Maybe I'll figure out how to add versioning
+> to this site so I can update it non-destructively.
 
 ## What is this all about?
 Python is pretty easy to write, but when it comes to packaging, distributing and running code somewhere other than your own computer, things get a bit tricky. This is a guide to how I've chosen to tackle that problem. It's a reference for my future self and hopefully of help to other people too.
@@ -8,7 +11,7 @@ Python is pretty easy to write, but when it comes to packaging, distributing and
 ## Who is this for?
 In general, I have two target use-cases when I'm writing code, if you have similar needs perhaps you'll find this site useful.
 
-- I'm providing a utility for users to use on their workstations - generally Windows PCs
+- I'm providing a utility for users to use on their workstations - generally Windows or macOS
 - I'm proving software to be run as a service on a server, often Windows but sometimes Linux
 
 These two use-cases share some similarities:

@@ -1,5 +1,5 @@
 site_name: "Snakes on a Plane: Getting Python to Users"
-repo_url: https://github.com/sonotley/python-deployment-utils
+repo_url: https://github.com/sonotley/cookiecutter-snoap
 copyright: Copyright &copy; 2021 Simon Notley
 theme:
   name: material

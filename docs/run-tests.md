@@ -20,6 +20,7 @@ Tox is a really cool bit of software, it does so much with almost no effort at a
 
     [testenv]
     deps =
+        -rdist/requirements.txt
         pytest
         pytest-cov
         pytest-mock

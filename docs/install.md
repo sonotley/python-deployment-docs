@@ -5,7 +5,8 @@ When distributing my application to the target system, I provide a batch (Window
 
 - Creates a directory in a location of the user's choosing
 - Creates a virtual environment in an `env` subdirectory
-- Activates the virtual environment and pip installs my project from the wheel
+- Attempts to `pip install` the pinned dependencies into that environment from a `requirements.txt` file
+- Proceeds to `pip install` my project from the wheel (including dependencies if the previous step failed)
 - Copies readme and resources into the target directory
 - Makes a link to the script we declared in the `pyproject.toml` files (which by defaul is created several folders deep inside the virtual enviroment) at the top level of the new directory
 
@@ -33,24 +34,33 @@ my-executable = "my_package.my_module:my_function"
 
 ## The installation script
 
-This is the Linux version, both versions are on my github.
+This is the Linux (specifically `bash`) version, both versions are included in my cookiecutter.
 
 ``` bash linenums="1"
 #!/usr/bin/env bash
-set -e # (1)
+set -e
 echo "*************************"
-echo "Installing My Great Project"
+echo "Installing My lovely project"
 echo "*************************"
-filePath=${1:-"/opt"}/my-great-project # (2)
+filePath=${1:-"/opt"}/my-lovely-project
 echo "Installing to $filePath"
 echo "Building Python virtual environment"
-python3 -m venv $filePath/env # (3)
-target=(my_great_project*.whl) # (4)
-source $filePath/env/bin/activate # (5)
-pip install "${target[0]}" # (6)
-ln -s $filePath/env/bin/my-great-project $filePath/my-great-project # (7)
-cp -R assets $filePath/assets # (8)
-cp setup.yaml $filePath/setup.yaml
+python3 -m venv "$filePath"/env
+target=("$(dirname "$0")"/my_lovely_project*.whl)
+source "$filePath"/env/bin/activate
+pip install -Ur "$(dirname "$0")"/requirements.txt || { echo Installation with pinned dependencies failed, attempting local dependency resolution; pinFail=1;}
+pip install "${target[0]}"
+ln -s "$filePath"/env/bin/my-lovely-project "$filePath"/my-lovely-project
+cp -r "$(dirname "$0")"/config.yaml "$filePath"/config.yaml
+cp -r "$(dirname "$0")"/resources "$filePath"/resources
+cp -r "$(dirname "$0")"/readme.md "$filePath"/readme.md
+echo "*******************************"
+echo "Installation complete"
+if [ $pinFail == 1 ]
+then
+  echo WARNING: pinned versions of dependencies could not be installed. Instead dependency resolution was performed by pip, it will probably work but is not exactly as tested.
+fi
+echo "*******************************"
 
 ```
 

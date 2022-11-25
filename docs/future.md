@@ -14,12 +14,13 @@ I have heard of pdm and am keen to try it. I have been bitten by Poetry's slight
 As I understand it pdm is intended to be used as a package manager on the target machine, which goes somewhat against my 'no prerequisites' principle. 
 However, if it were to become ubiquitous like pip or npm, I could certainly see myself using it.
 
-## Pinning dependencies
+## Using [Hatch](https://hatch.pypa.io/latest/) instead of Poetry
 
-Currently, I just rely on the target system's pip to resolve dependencies from `pyproject.toml` but much has been said for
-pinning dependencies to the exact versions that were tested. Poetry supports this using the poetry.lock file, but pip
-can't understand this so I would have to export a `requirements.txt` and `pip install` that prior to installing my package. 
-Should be easy, but I haven't got round to it yet.
+Hatch is a really interesting project which I think could take care of generating wheels/sdists in place of Poetry.
+It also has some cool versioning features which might mean I could retire my [script](versions.md). 
+Hatch doesn't do dependency resolution, which is fine because `pip` does that. 
+However, that does mean you have to manually specify dependencies in `pyproject.toml` which is a bit tedious and a source of possible errors.
+I have submitted a [feature request](https://github.com/pypa/hatch/discussions/437) to Hatch for this.
 
 ## Bundling dependencies
 
