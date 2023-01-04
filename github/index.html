@@ -9,15 +9,13 @@
       
       
       
-        <link rel="prev" href="../others/">
-      
       
       <link rel="icon" href="../assets/so.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.2">
     
     
       
-        <title>Things I'd like to try in future - Snakes on a Plane: Getting Python to Users</title>
+        <title>Build and release on GitHub - Snakes on a Plane: Getting Python to Users</title>
       
     
     
@@ -69,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#things-id-like-to-try-in-future" class="md-skip">
+        <a href="#build-and-release-on-github" class="md-skip">
           Skip to content
         </a>
       
@@ -101,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Things I'd like to try in future
+              Build and release on GitHub
             
           </span>
         </div>
@@ -393,73 +391,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Things I'd like to try in future
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../future/" class="md-nav__link">
         Things I'd like to try in future
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#more-idiomatic-linux-installation" class="md-nav__link">
-    More idiomatic Linux installation
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-pdm-instead-of-poetry" class="md-nav__link">
-    Using pdm instead of Poetry
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-hatch-instead-of-poetry" class="md-nav__link">
-    Using Hatch instead of Poetry
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bundling-dependencies" class="md-nav__link">
-    Bundling dependencies
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -484,42 +420,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#more-idiomatic-linux-installation" class="md-nav__link">
-    More idiomatic Linux installation
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-pdm-instead-of-poetry" class="md-nav__link">
-    Using pdm instead of Poetry
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-hatch-instead-of-poetry" class="md-nav__link">
-    Using Hatch instead of Poetry
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bundling-dependencies" class="md-nav__link">
-    Bundling dependencies
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -537,27 +437,87 @@
 
 
 
-<h1 id="things-id-like-to-try-in-future">Things I'd like to try in future</h1>
-<h2 id="more-idiomatic-linux-installation">More idiomatic Linux installation</h2>
-<p>My current installation method is really aimed at Windows users. It produces self-contained directories with an executable inside. 
-However, this executable is not on the path, and you can't install using a package manager - both basic expectations for Linux users.</p>
-<p>To be honest, I just haven't got my head around creating <code>.deb</code> packages but I am planning to add basic support for placing files in the correct
-place according to the <a href="https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard">Filesystem Hierarchy Standard</a> at some point.</p>
-<h2 id="using-pdm-instead-of-poetry">Using <a href="https://pdm.fming.dev/">pdm</a> instead of Poetry</h2>
-<p>I have been bitten by Poetry's slightly odd approach to pinning maximum versions 
-(excellent article <a href="https://iscinumpy.dev/post/bound-version-constraints/">here</a>) and pdm seems to deal more neatly with this aspect. 
-As I understand it pdm is intended to be used as a package manager on the target machine, which goes somewhat against my 'no prerequisites' principle. 
-However, if it were to become ubiquitous like pip or npm, I could certainly see myself using it.</p>
-<h2 id="using-hatch-instead-of-poetry">Using <a href="https://hatch.pypa.io/latest/">Hatch</a> instead of Poetry</h2>
-<p>Hatch is a really interesting project which I think could take care of generating wheels/sdists in place of Poetry.
-It also has some <a href="https://hatch.pypa.io/latest/version/">cool versioning features</a> which might mean I could retire my <a href="../versions/">script</a>. 
-Hatch doesn't do dependency resolution, which is fine because <code>pip</code> does that. 
-However, that does mean you have to manually specify dependencies in <code>pyproject.toml</code> which is a bit tedious and a source of possible errors.
-I have submitted a <a href="https://github.com/pypa/hatch/discussions/437">feature request</a> to Hatch for this.</p>
-<h2 id="bundling-dependencies">Bundling dependencies</h2>
-<p>I once read a post on the Python forums opining that application deployment should never use the target system's pip; rather
-the full code including all dependencies should be bundled with the application. 
-This takes us back into pex territory, so perhaps one day I will revisit pex.</p>
+<h1 id="build-and-release-on-github">Build and release on GitHub</h1>
+<p>As I developed <a href="https://github.com/sonotley/cookiecutter-snoap">cookiecutter-snoap</a>, it was natural for me to adopt GitHub Actions as my platform for automated builds and releases.
+As such, GitHub actions has completely replaced <a href="../jenkins/">Jenkins</a> in my workflow.</p>
+<p>The Github Actions script below is triggered by pushing a tag and performs all the <a href="../package/">packaging</a> and <a href="../run-tests/">testing</a> steps.
+It then publishes the application as a 'release' on the repo.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Release</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">tags</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;*&#39;</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+
+<span class="w">  </span><span class="nt">build</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">PYTHON_KEYRING_BACKEND</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">keyring.backends.null.Keyring</span>
+<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">setup pyenv</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gabrielfalcao/pyenv-action@v11&quot;</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.11</span>
+<span class="w">        </span><span class="nt">versions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.8, 3.9, 3.10, 3.11</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Add poetry</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abatilo/actions-poetry@v2</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Create poetry env</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">poetry install --with dev</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build project</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./build/build.sh</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Zip dist directory</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vimtor/action-zip@v1</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">files</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dist/</span>
+<span class="w">        </span><span class="nt">dest</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-lovely-project-${{  github.ref_name }}.zip</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ncipollo/release-action@v1</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">artifactErrorsFailBuild</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">        </span><span class="nt">artifacts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-lovely-project-${{  github.ref_name }}.zip</span>
+<span class="w">        </span><span class="nt">body</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;An</span><span class="nv"> </span><span class="s">automatic</span><span class="nv"> </span><span class="s">build</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">My</span><span class="nv"> </span><span class="s">lovely</span><span class="nv"> </span><span class="s">project&quot;</span>
+</code></pre></div></td></tr></table></div>
 
 
 
