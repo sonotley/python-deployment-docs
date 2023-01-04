@@ -20,8 +20,6 @@ my-app/
 ├─ readme.md
 ├─ setup.yaml
 ```
->I've been considering creating a .deb package, or as a minimum installing into  
-> `/usr/local/bin` on Debian to fit in with the norms of Linux, but I haven't got that far
 
 
 ## How to create an executable
@@ -34,7 +32,7 @@ my-executable = "my_package.my_module:my_function"
 
 ## The installation script
 
-This is the Linux (specifically `bash`) version, both versions are included in my cookiecutter.
+This is the Linux (specifically `bash`) version, both versions are included (and more up-to-date) in my [cookiecutter](https://github.com/sonotley/cookiecutter-snoap).
 
 ``` bash linenums="1"
 #!/usr/bin/env bash

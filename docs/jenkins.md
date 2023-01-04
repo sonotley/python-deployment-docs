@@ -1,6 +1,9 @@
 # Automate packaging with Jenkins
 
-Jenkins is a handy tool to automate all the packaging steps I've documented on this site. It's especially useful if you are sharing your applications with a wider team who have access to Jenkins. 
+> When I first created snoap, I was working in a business that had a Jenkins server.
+> I've since moved on to using GitHub Actions, but kept this section of the site for reference.
+
+Jenkins can automate all the packaging steps I've documented on this site. It's especially useful if you are sharing your applications with a wider team who have access to Jenkins. 
 
 In this scenario, all you need to do is to commit your code and then anyone who wants a copy of the tested, deployable application can grab it from Jenkins. You can have Jenkins build every time you commit, nightly, or just build on-demand.
 
@@ -17,8 +20,8 @@ eval "$(pyenv virtualenv-init -)"
 # Make all required versions of Python available for test
 pyenv local 3.8.12 3.9.7 3.10.0
 # Run tests and build
-chmod +x build_current_version.sh
-./build_current_version.sh
+chmod +x build/build.sh
+./build/build.sh
 # Build the API docs
 poetry install
 poetry run python -m pdoc example_package -d numpy -o ./pdoc

@@ -16,7 +16,10 @@ There are some optional steps that can be useful:
 
 - Single-source and automatically increment [the version number](versions.md)
 - Automatically [generate documentation](docs.md) using pdoc
-- Perform all [testing and packaging](jenkins.md) using Jenkins
+- Perform all testing and packaging using [GitHub Actions](github.md) or [Jenkins](jenkins.md)
+
+## Sounds good, is there a template project that does all this stuff?
+Yes! Check out [cookiecutter-snoap](https://github.com/sonotley/cookiecutter-snoap).
 
 ## Other stuff
 

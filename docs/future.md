@@ -5,11 +5,12 @@
 My current installation method is really aimed at Windows users. It produces self-contained directories with an executable inside. 
 However, this executable is not on the path, and you can't install using a package manager - both basic expectations for Linux users.
 
-To be honest, I just haven't got my head around creating `.deb` packages or understanding which combinations of `bin`, `lib`, `user`, `usr`, `.local` I should be putting things in.
+To be honest, I just haven't got my head around creating `.deb` packages but I am planning to add basic support for placing files in the correct
+place according to the [Filesystem Hierarchy Standard](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard) at some point.
 
 ## Using [pdm](https://pdm.fming.dev/) instead of Poetry
 
-I have heard of pdm and am keen to try it. I have been bitten by Poetry's slightly odd approach to pinning maximum versions 
+I have been bitten by Poetry's slightly odd approach to pinning maximum versions 
 (excellent article [here](https://iscinumpy.dev/post/bound-version-constraints/)) and pdm seems to deal more neatly with this aspect. 
 As I understand it pdm is intended to be used as a package manager on the target machine, which goes somewhat against my 'no prerequisites' principle. 
 However, if it were to become ubiquitous like pip or npm, I could certainly see myself using it.
@@ -17,7 +18,7 @@ However, if it were to become ubiquitous like pip or npm, I could certainly see 
 ## Using [Hatch](https://hatch.pypa.io/latest/) instead of Poetry
 
 Hatch is a really interesting project which I think could take care of generating wheels/sdists in place of Poetry.
-It also has some cool versioning features which might mean I could retire my [script](versions.md). 
+It also has some [cool versioning features](https://hatch.pypa.io/latest/version/) which might mean I could retire my [script](versions.md). 
 Hatch doesn't do dependency resolution, which is fine because `pip` does that. 
 However, that does mean you have to manually specify dependencies in `pyproject.toml` which is a bit tedious and a source of possible errors.
 I have submitted a [feature request](https://github.com/pypa/hatch/discussions/437) to Hatch for this.
